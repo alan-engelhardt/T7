@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Undervisere</title>
+    <style>
+        main{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 10em);
+            grid-gap: 1em;
+        }
+        article{
+            background: #cde;
+            padding: 0 1em;;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+  <h1>Personer</h1>
+   <main></main>
+
+   <template>
+       <article>
+           <h2 class="fornavn">NAVN</h2>
+           <h3 class="efternavn">EFTERNAVN</h3>
+           <img src="" alt="portræt">
+       </article>
+   </template>
+
+    <script>
+        "use strict";
+
+        const fil = "undervisere.json";
+        const url = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
+
+        async function hentdata() {
+            const resultat = await fetch(url);
+            const json = await resultat.json();
+            vis(json);
+        }
+
+        function vis(json) {
+            const beholder = document.querySelector("main");
+            const skabelon = document.querySelector("template");
+            json.feed.entry.forEach(person => {
+                const klon = skabelon.cloneNode(true).content;
+                klon.querySelector(".fornavn").textContent=person.gsx$navn.$t;
+                klon.querySelector(".efternavn").textContent=person.gsx$efternavn.$t;
+                klon.querySelector("img").src=person.gsx$billede.$t;
+                beholder.appendChild(klon);
+            });
+        }
+
+        hentdata();
+    </script>
+</body>
+
+
+</html>

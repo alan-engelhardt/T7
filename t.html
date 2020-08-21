@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch</title>
+</head>
+
+<body>
+    <script>
+        "use strict";
+        //fetch(url).then(e=>e.json()).then(json=>vis(json));
+
+        async function hentdata(ark) {
+            const url = "https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/" + ark + "/public/values?alt=json";
+            console.log(url)
+            const resultat = await fetch(url);
+            const json = await resultat.json();
+            vis(json);
+        }
+
+        const fil = "undervisere.json";
+
+        async function hentdata(fil) {
+            const resultat = await fetch(fil);
+            const json = await resultat.json();
+            vis(json);
+        }
+
+        function vis(json) {
+            console.log(json);
+        }
+
+        hentdata(fil);
+
+        const person = {
+            "navn": "Martin",
+            "titel": "Lektor"
+        }
+
+        const undervisere = [
+            {
+                "fornavn": "Martin",
+                "efternavn": "Bregnhøi",
+                "mail": "mabe@kea.dk",
+                "emner": ["JavaScript", "CSS", "Projektstyring"]
+            },
+            {
+                "fornavn": "Klaus",
+                "efternavn": "Mandal Hansen",
+                "mail": "klmh@kea.dk",
+                "emner": ["JavaScript", "HTML", "Tøjmode"]
+            },
+            {
+                "fornavn": "Louise Ea",
+                "efternavn": "Holbek",
+                "mail": "loeh@kea.dk",
+                "emner": ["SoMe", "SEO", "BMC"]
+            }
+        ]
+
+        let navn = person.navn;
+
+        let fornavn = undervisere[2].fornavn;
+        let emne = undervisere[0].emner[2];
+
+        //console.log(emne)
+
+        const bil = {
+            "mærke": "Reneault",
+            "model": "Clio",
+            "udstyr": ["fartpilot", "læderrat", "aircondition"],
+            "brændstof": "Benzin",
+            "motor": 1.2,
+            "hjul": 4,
+            "sæder": 5
+        }
+
+    </script>
+</body>
+
+</html>
