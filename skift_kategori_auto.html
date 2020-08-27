@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>T</title>
+    <style>
+        img {
+            width: 600px;
+        }
+
+        #pbar {
+            height: 10px;
+            background: orange;
+            width: 400px;
+            margin-left: 100px;
+            border-radius: 5px;
+        }
+
+        #pbar.pbarbar {
+            animation: bar 3s linear;
+        }
+
+        @keyframes bar {
+            25%{
+                transform: scaleX(1);
+            }
+            100% {
+                transform: scaleX(0);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <img id="billede" src="billeder/animals.jpg" alt="people">
+    <div id="pbar"></div>
+</body>
+<script>
+    let ruller = 1;
+
+    window.addEventListener('load', (event) => {
+        console.log(event.target);
+        start();
+        runpbar();
+    });
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        console.log(event);
+    });
+
+    const kategorier = ["animals", "arch", "people", "nature", "tech"];
+
+    function start() {
+        billede.addEventListener("click", toggle);
+        let timer = setInterval(skift, 3000);
+    }
+
+    function skift() {
+        const nummer = Math.round(Math.random() * 4);
+        billede.src = "https://placeimg.com/600/400/" + kategorier[nummer];
+        //billede.src = "billeder/" + kategorier[nummer] + ".jpg";
+        billede.alt = kategorier[nummer];
+        runpbar();
+    };
+
+
+    function toggle() {
+        if (ruller == 1) {
+            clearInterval(timer);
+            ruller = 0;
+        } else {
+            timer = setInterval(skift, 3000);
+            ruller = 1;
+        }
+    }
+
+    function runpbar() {
+        console.log("run")
+        pbar.classList.add("pbarbar");
+        setTimeout(() => {
+            pbar.classList.remove("pbarbar");
+        }, 2990);
+    }
+
+</script>
+
+</html>
