@@ -1,6 +1,5 @@
-[
-    {
-    "navn": "Gris",
+[{
+    "navn": "Pattegris",
     "type": "Pattedyr",
     "levested": "svinesti",
     "billede": "http://mabe-kea.dk/E19/pics/pig.png"
@@ -29,5 +28,4 @@
     "type": "krybdyr",
     "levested": "floder",
     "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg"
-        }
-]
+        }]
